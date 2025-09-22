@@ -4,7 +4,7 @@ const teamMembers = [
   { server: 'Ner\'zhul', name: 'Yokoyama' },
   { server: 'Ner\'zhul', name: 'Eremes' },
   { server: 'Frostmane', name: 'Kardoroth' },
-  { server: 'Zul\'jin', name: 'Jazzpie' },
+  { server: 'Korgath', name: 'Jazzbeams' },
   { server: 'Frostmane', name: 'PopaVlad' },
   { server: 'Proudmoore', name: 'Pugchimp' },
 
