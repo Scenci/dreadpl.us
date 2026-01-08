@@ -1,338 +1,156 @@
-/* ===============================
-   Dread+ Member Card (Full Rebuild)
-   Breathing Wave Border, Seamless Loop
-   =============================== */
+/* Member.css */
+/* Uses global :root variables from index.css plus local dynamic --score-color */
 
-/* Tunables */
-:root {
-  --void-radius: 15px;
-
-  /* Wave motion */
-  --void-speed-x: 8s;     /* top/bottom sweep */
-  --void-speed-y: 12s;   /* left/right sweep */
-  --void-overlap: 3px; /* 1-2px only */
-
-  /* Breathing thickness (final = base + amp * t) */
-  --void-thickness-base: 2px;
-  --void-thickness-amp: 4px;
-
-  /* Palette: deeper blue + purple + pink */
-  --void-c0: #004dff;   /* deep blue */
-  --void-c1: #00a3ff;   /* cyan-blue */
-  --void-c2: #5f43e9;   /* deep purple */
-  --void-c3: #8a2be2;   /* royal purple */
-  --void-c4: #ff2d95;   /* pink-magenta */
-
-/* tweak these */
-  --glass-blur: 5px;         /* blur amount behind the card */
-  --glass-saturate: 1.3;      /* slight color pop */
-  --glass-bright: 1.01;       /* subtle brightening */
-  --glass-opacity: 0.01;      /* how milky the panel looks */
-  --glass-stroke: rgba(255,255,255,0.2); /* hairline stroke */
-
-  /* tint blend (dark cool tint for void bg) */
-  --glass-tint-1: rgba(18, 22, 34, 0.35);
-  --glass-tint-2: rgba(18, 22, 34, 0.15);
-
-  /* shadow */
-  --glass-shadow: 0 8px 26px rgba(0,0,0,0.3);
-
-}
-
-/* Animatable custom properties */
-@property --x { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
-@property --y { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
-@property --t { syntax: "<number>";     inherits: false; initial-value: 0;  }
-
-/* ---------- Role icon ---------- */
-.member-role-icon {
-  width: 32px;
-  height: auto;
-  margin-left: 10px;
-}
-
-/* ---------- Members container ---------- */
-.members-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 150px;
-  padding-bottom: 120px;
-  gap: 50px;
-  background-color: transparent;
-  max-width: calc(100% - 660px);
-  margin: 0 auto;
-}
-
-/* ---------- Text rows ---------- */
-.member-class-spec {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0;
-}
-
-.member-score {
-  font-size: 1.3rem;
-}
-
-/* ---------- Member card ---------- */
 .member {
-  background:
-    linear-gradient( to bottom right,
-      rgba(255,255,255, var(--glass-opacity)) 0%,
-      rgba(255,255,255, calc(var(--glass-opacity) * 0.6)) 100%
-    ),
-    linear-gradient( to top left,
-      var(--glass-tint-1),
-      var(--glass-tint-2)
-    );
+  /* Dynamic Score Color fallback */
+  --score-color: var(--primary-accent);
 
-    backdrop-filter:
-    blur(var(--glass-blur))
-    saturate(var(--glass-saturate))
-    brightness(var(--glass-bright));
-
-  -webkit-backdrop-filter:
-    blur(var(--glass-blur))
-    saturate(var(--glass-saturate))
-    brightness(var(--glass-bright));
-  
-  /* breathing thickness for the ring */
-  --void-thickness: calc(
-    var(--void-thickness-base) + var(--void-thickness-amp) * var(--t)
-  );
-
-  /* border: 1px solid transparent; /* allows gradient ring to be visible */ 
-  border: 1px solid var(--glass-stroke);
-
-  /* box-shadow: 0 25px 25px rgba(0, 0, 0, 0.2); */
-  box-shadow: var(--glass-shadow);
+  /* Glass Base */
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 85px;
-  width: 110px;
-  margin: 15px;
-  background-color: transparent;
-  color: white;
-  border-radius: var(--void-radius);
-  transition-duration: 0.2s;
-  
-  isolation: isolate;
+  padding: 2rem;
+  width: 140px;
+  /* Adjusted size */
+  margin: 1.5rem;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  /* Contain the glow */
 }
 
-/* ---------- Wave ring: top + bottom ---------- */
-.member::before {
-  --x: 0%;
-  content: "";
-  position: absolute;
-  inset: calc(-1 * var(--void-thickness) - var(--void-overlap));
-  padding: calc(var(--void-thickness) + var(--void-overlap));
-  border-radius: calc(var(--void-radius) + var(--void-thickness) + var(--void-overlap));
-
-  /* top & bottom bands (wider travel for smoother motion) */
-  background:
-    /* top band */
-    linear-gradient(
-      90deg,
-      transparent 0 26%,
-      var(--void-c0) 36%,
-      var(--void-c2) 48%,
-      var(--void-c4) 62%,
-      transparent 74% 100%
-    ) top left / 400% var(--void-thickness) no-repeat,
-    /* bottom band, mirrored */
-    linear-gradient(
-      90deg,
-      transparent 0 26%,
-      var(--void-c4) 36%,
-      var(--void-c3) 48%,
-      var(--void-c1) 62%,
-      transparent 74% 100%
-    ) bottom left / 400% var(--void-thickness) no-repeat;
-
-  /* show only the border ring, not the fill */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-
-   background-size:
-    400% calc(var(--void-thickness) + var(--void-overlap))
-    , 400% calc(var(--void-thickness) + var(--void-overlap));
-  /* nudge to keep them visually centered after the bleed */
-  background-position:
-    var(--x) calc(-1 * var(--void-overlap) / 2),
-    calc(100% - var(--x)) calc(100% + var(--void-overlap) / 2);
-
-  filter: drop-shadow(0 0 10px rgba(124, 85, 231, 0.55));
-  animation:
-    wave-x var(--void-speed-x) linear infinite alternate,
-    void-breathe 8s cubic-bezier(.45,.05,.55,.95) infinite;
-  will-change: background-position, filter;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* ---------- Wave ring: left + right ---------- */
-.member::after {
-  --y: 0%;
-  content: "";
-  position: absolute;
-  inset: calc(-1 * var(--void-thickness) - var(--void-overlap));
-  padding: calc(var(--void-thickness) + var(--void-overlap));
-  border-radius: calc(var(--void-radius) + var(--void-thickness) + var(--void-overlap));
-
-  /* left & right bands (wider travel for smoother motion) */
-  background:
-    /* left band */
-    linear-gradient(
-      0deg,
-      transparent 0 26%,
-      var(--void-c0) 36%,
-      var(--void-c3) 48%,
-      var(--void-c4) 62%,
-      transparent 74% 100%
-    ) top left / var(--void-thickness) 400% no-repeat,
-    /* right band, mirrored */
-    linear-gradient(
-      0deg,
-      transparent 0 26%,
-      var(--void-c4) 36%,
-      var(--void-c2) 48%,
-      var(--void-c1) 62%,
-      transparent 74% 100%
-    ) top right / var(--void-thickness) 400% no-repeat;
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-
-  background-size:
-    calc(var(--void-thickness) + var(--void-overlap)) 400%
-    , calc(var(--void-thickness) + var(--void-overlap)) 400%;
-  background-position:
-    calc(-1 * var(--void-overlap) / 2) var(--y),
-    calc(100% + var(--void-overlap) / 2) calc(100% - var(--y));
-
-  filter: blur(10px) drop-shadow(0 0 12px rgba(255, 45, 149, 0.45));
-  opacity: 0.7;
-  animation:
-    wave-y var(--void-speed-y) linear infinite alternate,
-    void-breathe 8s cubic-bezier(.45,.05,.55,.95) infinite;
-  will-change: background-position, filter;
-  pointer-events: none;
-  z-index: -2;
-}
-
-
-
-/* ---------- Hover ---------- */
+/* Hover State */
 .member:hover {
   cursor: pointer;
-  background-color: transparent;
-  transform: scale(1.1);
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(30, 30, 50, 0.6);
+  box-shadow: 0 0 20px var(--score-color), inset 0 0 10px var(--score-color);
+  border-color: var(--score-color);
 }
 
-.member:hover::after {
-  opacity: 0.9;
-  filter: blur(12px) drop-shadow(0 0 16px rgba(124, 85, 231, 0.55));
+/* Text Styles */
+.member-name {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 10px 0 5px;
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* ---------- Image ---------- */
+.member-class-spec {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.member-spec {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #ccc;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.member-score {
+  font-size: 1.5rem;
+  font-family: 'Outfit', sans-serif;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 10px currentColor;
+  /* Glow with its own color */
+}
+
 .member-image {
-  width: 100px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /* Circle avatar */
+  border: 2px solid var(--score-color);
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s;
+}
+
+.member-role-icon {
+  width: 24px;
   height: auto;
-  border-radius: 15px;
+  margin-top: -15px;
+  /* Overlap avatar slightly */
+  margin-bottom: 5px;
+  filter: drop-shadow(0 0 5px black);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 2px;
 }
 
-/* ---------- Links ---------- */
-.member-link { text-decoration: none; color: inherit; }
-
-/* ---------- Buttons ---------- */
-.remove-member-btn {
-  padding: 0.4rem 1.6rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 10px;
-  color: #e0dddd;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin-top: 1.6rem;
-  transition: 0.3s;
-}
-.remove-member-btn:hover { background-color: transparent; }
-
+/* Buttons */
 .redirect-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 5px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 10px;
-  color: #fff;
-  background-color: transparent;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.3);
   border: none;
-  cursor: pointer;
-  transition: 0.3s;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0;
+  /* Hide by default */
 }
-.redirect-btn:hover { background-color: transparent; }
+
+.member:hover .redirect-btn {
+  opacity: 1;
+}
+
+.redirect-btn:hover {
+  background: var(--primary-accent);
+}
 
 .redirect-icon {
-  width: 25px;
-  height: auto;
-  filter: brightness(0) invert(1); /* makes black → white */
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
 }
 
-.redirect-icon.blue {
-  filter: brightness(0) saturate(100%) invert(74%) sepia(50%) saturate(747%) hue-rotate(179deg) brightness(102%) contrast(95%);
+.remove-member-btn {
+  margin-top: 1rem;
+  background: rgba(255, 50, 50, 0.2);
+  border: 1px solid rgba(255, 50, 50, 0.5);
+  color: #ffaaaa;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-/* ---------- Animations ---------- */
-/*
-@keyframes wave-x { 0% { --x: 0%; } 100% { --x: 100%; } }
-@keyframes wave-y { 0% { --y: 0%; } 100% { --y: 100%; } }
-
-/* softer ease for the breath endpoints */
-/*
-@keyframes void-breathe {
-  0%   { --t: 0;   filter: brightness(1); }
-  25%  { --t: 0;   filter: brightness(1); }
-  35%  { --t: 0;   filter: brightness(1); }
-  50%  { --t: 1;   filter: brightness(1.12); }
-  75%  { --t: 1;   filter: brightness(1.15); }
-  100% { --t: 0;   filter: brightness(1); }
-}
-*/
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .member::before,
-  .member::after {
-    animation: none;
-  }
+.remove-member-btn:hover {
+  background: rgba(255, 50, 50, 0.5);
+  color: white;
 }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .member {
-    /* simulate glass with a slightly more opaque background */
-    background:
-      linear-gradient( to bottom right,
-        rgba(255,255,255, 0.08),
-        rgba(255,255,255, 0.05)
-      ),
-      linear-gradient( to top left,
-        rgba(18,22,34,0.45),
-        rgba(18,22,34,0.25)
-      );
-  }
+/* Container spacing fix */
+.members-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }

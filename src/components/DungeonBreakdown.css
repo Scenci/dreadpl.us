@@ -1,148 +1,171 @@
+/* DungeonBreakdown.css */
 @font-face {
   font-family: 'CinzelDec';
   src: url('../fonts/CinzelDecorative-Regular.ttf') format('truetype');
 }
 
-.dungeon-breakdown-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(200px, 1fr));
-    grid-gap: 20px;
-    margin-top: 20px;
-    padding-left: 2.3rem;
-    
- 
-  }
-
-
-  .button-container-load {
-    text-align: center;
-    border-radius: 10px;
-    
-  }
-
-  .button-container-load button{
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 10px;
-    color: #fff;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-top: .5rem;
-    margin-bottom: 10px;
-  
-    transition: 0.3s;
-  }
-
-  .button-container-load button:hover{
-    background-color: transparent;
-    cursor: pointer;
-  }
-
-  
-  .member-dungeons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*border: 3px solid #ccc;*/
-    border-radius: 25px; 
-    padding: 5px; 
-    width: 90%;
-    transition-duration: 0.1s;
-    background-color: transparent;
-  }
-/*
-  .member-dungeons:hover {
-    background-color: transparent;
-    -webkit-transform: scale(1.05);
-  }
-  */
-
-
-  .member-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: white;
-    text-align: center;
-    font-family: CinzelDec;
-  }
-  
-  .dungeon-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 6px 10px;            /* add some hit area */
-    border-radius: 10px;           /* so highlight has shape */
-    transition: background-color .15s ease, box-shadow .15s ease, transform .1s ease;
-  }
-  .highlight {
-  background: radial-gradient(120% 120% at 10% 10%, rgba(108,92,231,.22), transparent 60%),
-              radial-gradient(120% 120% at 90% 90%, rgba(255,45,149,.18), transparent 60%);
-  box-shadow: 0 0 0 2px rgba(124,85,231,.35), 0 8px 18px rgba(0,0,0,.25);
-  transform: translateY(-1px);
+.dungeon-breakdown-container {
+  padding-bottom: 20px;
+  width: 100%;
 }
-  
-  .dungeon-name,
-  .fdungeon-name,
-  .tdungeon-name {
-    color: white;
-    text-align: center;
-    justify-self: center; 
-    font-size: 16px;
-  }
-  
-  .dungeon-level,
-  .fdungeon-level,
-  .tdungeon-level {
-    color: white;
-    text-align: center;
-    justify-self: center; 
-    font-size: 17px;
-  }
-  
-  .dungeon-time {
-    color: white;
-  }
-  
-  .dungeon-breakdown-title {
-    font-size: 2rem;
-    color: white;
-    text-align: center;
-    text-decoration: underline;
-    padding: 15px;
-    border-radius: 15px;
-    padding-bottom: 25px;
-    font-family: CinzelDec;
-  }
-  
-  .run-types {
-    display: flex;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .main-runs,
-  .alternate-runs {
-    width: 45%;
-  }
-  
-  .tyrannical-runs,
-  .fortified-runs {
-    color: white;
-    text-align: center; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-  }
 
-  .dungeon-breakdown-container {
-    padding-bottom: 20px; 
-  }
+.dungeon-breakdown-title {
+  font-family: 'CinzelDec', serif;
+  font-size: 2.5rem;
+  color: var(--primary-accent);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(176, 107, 255, 0.5);
+  margin-bottom: 2rem;
+  display: block;
+}
 
-  .highlight {
-    /*background-color: transparent;*/
-    background-color: transparent;
-  }
+.dungeon-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.member-dungeons {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-dungeons:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(120, 50, 255, 0.3);
+}
+
+.member-name {
+  font-family: 'CinzelDec', serif;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+.run-types {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.tyrannical-runs,
+.fortified-runs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tyrannical-runs h3,
+.fortified-runs h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.8;
+}
+
+.tyrannical-runs h3 {
+  color: #ff6b6b;
+}
+
+/* Soft Red for Tyrannical */
+.fortified-runs h3 {
+  color: #4ecdc4;
+}
+
+/* Soft Teal for Fortified */
+
+.tyrannical-runs ul,
+.fortified-runs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dungeon-info {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dungeon-info:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.highlight {
+  background: linear-gradient(90deg,
+      rgba(120, 50, 255, 0.2) 0%,
+      rgba(255, 45, 149, 0.2) 100%);
+  border: 1px solid rgba(120, 50, 255, 0.4);
+  box-shadow: 0 0 10px rgba(120, 50, 255, 0.2);
+}
+
+.dungeon-name,
+.fdungeon-name,
+.tdungeon-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.dungeon-level,
+.fdungeon-level,
+.tdungeon-level {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* Color grading for key levels could go here if implemented in JS, 
+   but simplistic CSS grading is hard without classes.
+   We stick to clean white/glow. */
+
+.button-container-load {
+  margin-top: 1rem;
+}
+
+.button-container-load button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-container-load button:hover {
+  background: var(--primary-accent);
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 10px var(--primary-accent);
+}

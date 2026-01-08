@@ -1,165 +1,123 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  color: white;
-}
-
+/* MythicPlusCalculator.css */
 .mythic-plus-calculator {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
-  padding: 1rem;
-  text-align: center;
 }
 
 .mythic-plus-calculator h2 {
-  font-size: 2rem;
-  margin-bottom: 3rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-accent);
+  text-shadow: 0 0 15px rgba(176, 107, 255, 0.4);
+  text-align: center;
 }
 
 .calculator-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4rem;
-  align-items: center;
-  justify-items: center;
-  margin-bottom: 1.5rem;
-  width: auto;
-}
-
-.mythic-plus-calculator .tcolumn-header,
-.mythic-plus-calculator .fcolumn-header {
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   width: 100%;
 }
 
-.mythic-plus-calculator .tcolumn-header {
-  text-align: right;
-}
-
-.mythic-plus-calculator .fcolumn-header {
-  text-align: left;
+.tcolumn-header,
+.fcolumn-header {
+  font-family: 'CinzelDec', serif;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .input-pair {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
-  width: 30%;
+  margin-bottom: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }
 
 .input-pair label {
-  font-size: 1rem;
-  width: 50px;
-  text-align: right;
-  margin-right: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-right: 1rem;
+  flex: 1;
 }
 
 .small-input {
   width: 60px;
-  padding: 0.5rem;
-  border: 2px solid #5262ff;
-  font-size: 1rem;
-  background-color: transparent;
-  border-radius: 15px;
+  padding: 0.4rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(120, 50, 255, 0.3);
+  border-radius: 6px;
+  color: white;
   text-align: center;
-  margin-top: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.2s;
 }
 
 .small-input:focus {
-  background-color: transparent;
+  outline: none;
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 8px var(--primary-accent);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .sum-display {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-left: 10px;
-}
-
-.label {
-  font-size: 1.1rem;
-  font-weight: bold;
-  width: 40px;
-  text-align: right;
+  margin-top: 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
 }
 
 .total {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 20px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--secondary-accent);
+  text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
 .error-message {
-  color: red;
-  font-weight: bold;
-  margin-top: 10px;
+  color: var(--danger);
+  margin-top: 1rem;
+  font-family: 'Inter', sans-serif;
 }
 
-.dungeon-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-}
-
-.dungeon-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  align-items: center;
-  width: 100%;
-}
-
-.dungeon-name {
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: right;
-}
-
-.tyrannical-column,
-.fortified-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: bold;
-  text-align: center;
-}
-
-
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  
-}
-.calculator-container {
-  display: flex;
-  justify-content: center;
-  max-width: 1200px; /* adjust this value according to your preference */
-  margin: 0 auto;
-}
-
-.info-column {
-  flex: 1;
-  padding-right: 2rem;
-  text-align: left;
-}
-
-.calculator-column {
-  flex: 1;
-}
-.toggle-button{
-  border-radius: 10px;
-  background-color: transparent;
+.toggle-button {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-secondary);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
   cursor: pointer;
-  color: white;
-  border: none;
-  
+  transition: all 0.2s;
+}
+
+.toggle-button:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
 }

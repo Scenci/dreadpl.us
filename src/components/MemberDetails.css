@@ -1,82 +1,116 @@
+/* MemberDetails.css */
 .member-details {
+  background: rgba(10, 10, 25, 0.85);
+  /* Darker glass for contrast */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  width: 90%;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 75px;
-  color: white;
-  background-color: transparent;
-  transform: translateY(calc(-10%)); 
+
+  transform: translateY(-20px);
   opacity: 0;
-  transition: transform 0.5s ease;
-  backface-visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .member-details.slide-down {
   transform: translateY(0);
-  background-color: transparent;
-  backface-visibility: hidden;
   opacity: 1;
 }
 
-  .best-key {
-    display: block;
-    width: 7%;
-    align-content: center;
-    padding: 10px 10px;
-    margin: 10px;
-    border: 2px solid white;
-    border-radius: 5px;
-    /* Add any styles you want for the best-key and lowest-key texts */
-  }
+.member-details h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
 
-  
-  .best-key:hover{
-    background-color: transparent;
-  }
+.best-key,
+.lowest-key {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  margin: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
 
-  .lowest-key {
-    display: block;
-    width: 7%;
-    padding: 10px 10px;
-    margin: 10px;
-    border: 2px solid white;
-    border-radius: 5px;
-    /* Add any styles you want for the best-key and lowest-key texts */
-  }
+.best-key {
+  border-color: var(--success);
+  color: #cfc;
+  box-shadow: inset 0 0 10px rgba(0, 255, 128, 0.1);
+}
 
-  .lowest-key:hover{
-    background-color: transparent;
-  }
-  
-  .score-table {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .score-table-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: transparent;
-    font-weight: bold;
-    color: white; /* Add this line for better readability */
-    text-align: center;
-  }
-  
-  .score-table-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-    text-align: center; /* Add this line to center the text within each row */
-  }
-  
-  
+.lowest-key {
+  border-color: var(--danger);
+  color: #fcc;
+  box-shadow: inset 0 0 10px rgba(255, 64, 64, 0.1);
+}
+
+/* Score Table */
+.score-table {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+}
+
+.score-table h3 {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.score-table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  font-weight: 700;
+  color: var(--primary-accent);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.score-table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s;
+}
+
+.score-table-row:last-child {
+  border-bottom: none;
+}
+
+.score-table-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.score-table-row span:nth-child(2) {
+  color: var(--success);
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 255, 128, 0.4);
+}

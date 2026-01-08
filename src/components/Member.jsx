@@ -47,24 +47,23 @@ const Member = ({ id, character, onMemberClick, onRemoveMember, hideRemoveBtn })
 
   const score = displayCharacter.mythic_plus_scores_by_season[0].scores.all;
 
+  const color = getScoreColor(score);
   const scoreStyle = {
-    color: getScoreColor(score),
+    color: color,
     fontWeight: 'bold',
   };
 
-
   return (
+    <div className="member" style={{ '--score-color': color }} onClick={() => onMemberClick(character)}>
 
-    <div className="member" onClick={() => onMemberClick(character)}>
-     
-      
+
       <img src={displayCharacter.thumbnail_url} alt={`${displayCharacter.name} thumbnail`} className="member-image" />
       <h3 className="member-name">{displayCharacter.name}</h3>
       <img src={roleIcon} alt={displayCharacter.active_spec_role} className="member-role-icon" />
       <p className="member-class-spec"> {displayCharacter.class}</p>
       <p className="member-spec"> {displayCharacter.active_spec_name}</p>
       <p className="member-score" style={scoreStyle}>{score}</p>
-    
+
       <button
         className="redirect-btn"
         onClick={(e) => {
@@ -73,24 +72,24 @@ const Member = ({ id, character, onMemberClick, onRemoveMember, hideRemoveBtn })
           window.open(displayCharacter.profile_url, "_blank");
         }}
       >
-      <img
-        src={require('../images/redirect.png')}
-        alt="Raider IO"
-        className="redirect-icon"
-      />
+        <img
+          src={require('../images/redirect.png')}
+          alt="Raider IO"
+          className="redirect-icon"
+        />
       </button>
 
       {!hideRemoveBtn && (
-      <button
-      className="remove-member-btn"
-      onClick={(e) => {
-        e.stopPropagation(); // Prevent triggering the onMemberClick event
-        e.preventDefault(); // Prevent default link behavior
-        onRemoveMember(id);
-      }}
-    >
-      Hide
-    </button>
+        <button
+          className="remove-member-btn"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent triggering the onMemberClick event
+            e.preventDefault(); // Prevent default link behavior
+            onRemoveMember(id);
+          }}
+        >
+          Hide
+        </button>
       )}
     </div>
   );
