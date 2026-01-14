@@ -4,7 +4,7 @@ const About = () => {
         <div className="about-body">
             <h1 className="about-header1">About</h1>
             <p className="about-p1">
-            WoW Mythic+ Team "DreadPlus"
+            We're actually kind of washed
             <br/><br/>
             </p>
             <div className="about-spacer"></div>

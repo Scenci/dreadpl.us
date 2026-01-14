@@ -1,10 +1,10 @@
 :root {
-  --primary-accent: #bc13fe;
-  --secondary-accent: #00f3ff;
-  --glass-bg: rgba(28, 28, 32, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --primary-accent: #1e90ff;
+  --secondary-accent: #00d4ff;
+  --glass-bg: rgba(15, 25, 45, 0.6);
+  --glass-border: rgba(100, 180, 255, 0.15);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-secondary: rgba(200, 220, 255, 0.7);
 }
 
 body {

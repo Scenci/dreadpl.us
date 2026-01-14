@@ -9,18 +9,18 @@
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(100, 180, 255, 0.15);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  width: 140px;
-  /* Adjusted size */
-  margin: 1.5rem;
-  border-radius: 20px;
+  padding: 2.5rem;
+  width: 190px;
+  /* Increased card size relative to portrait */
+  margin: 1.7rem;
+  border-radius: 22px;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
   /* Contain the glow */
@@ -39,45 +39,53 @@
 .member-name {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
-  font-size: 1.2rem;
-  margin: 10px 0 5px;
+  font-size: 1.4rem;
+  margin: 12px 0 6px;
   color: var(--text-primary);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .member-class-spec {
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .member-spec {
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: #ccc;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
 
 .member-score {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: 'Outfit', sans-serif;
-  margin: 0.5rem 0;
-  text-shadow: 0 0 2px currentColor;
-  /* Subtle glow with its own color */
+  font-weight: 800;
+  margin: 0.6rem 0;
+  padding: 0;
+  letter-spacing: 2px;
+  /* Clean number-focused style - no boxes */
+  background: none;
+  border: none;
+  text-shadow:
+    0 0 20px var(--score-color),
+    0 0 40px var(--score-color),
+    0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .member-image {
-  width: 80px;
-  height: 80px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   /* Circle avatar */
   border: 2px solid var(--score-color);
   object-fit: cover;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: border-color 0.3s;
 }
@@ -150,7 +158,7 @@
   flex-wrap: wrap;
   justify-content: center;
   padding: 2rem;
-  gap: 1rem;
-  max-width: 1200px;
+  gap: 2.5rem;
+  max-width: 1400px;
   margin: 0 auto;
 }

@@ -11,12 +11,38 @@
 
 .dungeon-breakdown-title {
   font-family: 'CinzelDec', serif;
-  font-size: 2.5rem;
-  color: #1e90ff;
+  font-size: 2.8rem;
   text-align: center;
-  text-shadow: 0 0 10px rgba(30, 100, 180, 0.6);
   margin-bottom: 2rem;
   display: block;
+  position: relative;
+  /* Gravitational pull effect - text being drawn into void */
+  background: linear-gradient(
+    180deg,
+    rgba(150, 200, 255, 1) 0%,
+    rgba(30, 144, 255, 1) 30%,
+    rgba(20, 80, 160, 1) 60%,
+    rgba(10, 40, 100, 0.8) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 15px rgba(30, 144, 255, 0.6));
+  letter-spacing: 4px;
+  animation: voidPull 4s ease-in-out infinite;
+}
+
+@keyframes voidPull {
+  0%, 100% {
+    letter-spacing: 4px;
+    filter: drop-shadow(0 0 15px rgba(30, 144, 255, 0.6));
+  }
+  50% {
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 25px rgba(30, 144, 255, 0.8));
+  }
 }
 
 .dungeon-breakdown-grid {
@@ -45,7 +71,7 @@
 .member-dungeons:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-color: rgba(120, 50, 255, 0.3);
+  border-color: rgba(30, 144, 255, 0.4);
 }
 
 .member-name {
@@ -85,12 +111,14 @@
 }
 
 .tyrannical-runs h3 {
-  color: #ff6b6b;
+  color: #00d4ff;
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
 }
 
-/* Soft Red for Tyrannical */
+/* Bright Cyan for Tyrannical - blue void theme */
 .fortified-runs h3 {
-  color: #4ecdc4;
+  color: #6b8cff;
+  text-shadow: 0 0 8px rgba(107, 140, 255, 0.4);
 }
 
 /* Soft Teal for Fortified */
@@ -122,10 +150,10 @@
 
 .highlight {
   background: linear-gradient(90deg,
-      rgba(120, 50, 255, 0.2) 0%,
-      rgba(255, 45, 149, 0.2) 100%);
-  border: 1px solid rgba(120, 50, 255, 0.4);
-  box-shadow: 0 0 10px rgba(120, 50, 255, 0.2);
+      rgba(30, 80, 180, 0.25) 0%,
+      rgba(0, 180, 255, 0.2) 100%);
+  border: 1px solid rgba(30, 144, 255, 0.5);
+  box-shadow: 0 0 12px rgba(30, 144, 255, 0.3);
 }
 
 .dungeon-name,

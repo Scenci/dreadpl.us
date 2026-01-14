@@ -18,16 +18,16 @@ const BlackHole = () => {
         const EVENT_HORIZON_RADIUS_RATIO = 0.15; // Increased from 0.12 (25% larger)
         const ROTATION_SPEED = 0.0003; // Very slow rotation for sense of scale
 
-        // Color palette - Deep Blues and Purples
+        // Color palette - Deep Blues and Azures (blue void theme)
         const colors = {
             deepSpace: 'rgb(2, 3, 8)',
             eventHorizon: '#000000',
-            innerGlow: 'rgba(180, 220, 255, 0.8)',      // Bright cyan/white-blue
-            hotCore: 'rgba(220, 240, 255, 0.9)',        // White-blue
-            midDisk: 'rgba(120, 80, 200, 0.7)',         // Purple transition
-            outerDisk: 'rgba(255, 255, 255, 0.5)',        // Deep purple
-            lensingLight: 'rgba(180, 140, 255, 0.4)',   // Purple-tinted lensing
-            photonRing: 'rgba(200, 180, 255, 0.9)',     // Bright with subtle purple
+            innerGlow: 'rgba(180, 230, 255, 0.8)',      // Bright cyan/white-blue
+            hotCore: 'rgba(220, 245, 255, 0.9)',        // White-blue
+            midDisk: 'rgba(30, 144, 255, 0.7)',         // Azure blue
+            outerDisk: 'rgba(20, 80, 160, 0.5)',        // Deep blue
+            lensingLight: 'rgba(100, 180, 255, 0.4)',   // Blue-tinted lensing
+            photonRing: 'rgba(150, 220, 255, 0.9)',     // Bright azure
         };
 
         class Star {
@@ -42,19 +42,19 @@ const BlackHole = () => {
                 this.baseOpacity = Math.random() * 0.5 + 0.15;
                 this.twinkleSpeed = Math.random() * 0.015 + 0.005; // Slower twinkle
                 this.twinkleOffset = Math.random() * Math.PI * 2;
-                // Some stars have a blue or purple tint
+                // Some stars have blue tints (blue void theme)
                 const tintRoll = Math.random();
-                this.tint = tintRoll > 0.8 ? 'purple' : (tintRoll > 0.5 ? 'blue' : 'white');
+                this.tint = tintRoll > 0.7 ? 'cyan' : (tintRoll > 0.4 ? 'blue' : 'white');
             }
 
             draw(t) {
                 const twinkle = Math.sin(t * this.twinkleSpeed + this.twinkleOffset) * 0.3 + 0.7;
                 const opacity = this.baseOpacity * twinkle;
 
-                if (this.tint === 'purple') {
-                    ctx.fillStyle = `rgba(200, 180, 255, ${opacity})`;
+                if (this.tint === 'cyan') {
+                    ctx.fillStyle = `rgba(150, 220, 255, ${opacity})`;
                 } else if (this.tint === 'blue') {
-                    ctx.fillStyle = `rgba(180, 210, 255, ${opacity})`;
+                    ctx.fillStyle = `rgba(100, 180, 255, ${opacity})`;
                 } else {
                     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
                 }
@@ -83,37 +83,37 @@ const BlackHole = () => {
                 this.lensingSizeVar = 0.5 + Math.random() * 1.5;
                 this.lensingOpacityVar = 0.5 + Math.random() * 0.5;
 
-                // Color based on distance - blue-purple gradient (smaller particles for scale)
+                // Color based on distance - blue gradient (blue void theme)
                 if (this.radiusMult < 1.4) {
-                    // Innermost - brilliant cyan/white-blue
+                    // Innermost - brilliant white-cyan
                     const alpha = 0.6 + Math.random() * 0.4;
-                    this.color = `rgba(200, 240, 255, ${alpha})`;
+                    this.color = `rgba(220, 250, 255, ${alpha})`;
                     this.size = 0.8 + this.sizeVariation * 1.2;
                     this.glowIntensity = 1.5;
                 } else if (this.radiusMult < 1.8) {
-                    // Inner - azure to purple transition
+                    // Inner - bright azure
                     const alpha = 0.5 + Math.random() * 0.4;
-                    const purpleBlend = (this.radiusMult - 1.4) / 0.4;
-                    const r = Math.floor(100 + purpleBlend * 80);
-                    const g = Math.floor(180 - purpleBlend * 60);
+                    const blueBlend = (this.radiusMult - 1.4) / 0.4;
+                    const r = Math.floor(100 - blueBlend * 40);
+                    const g = Math.floor(200 - blueBlend * 30);
                     const b = Math.floor(255);
                     this.color = `rgba(${r}, ${g}, ${b}, ${alpha})`;
                     this.size = 0.6 + this.sizeVariation * 1.0;
                     this.glowIntensity = 1.2;
                 } else if (this.radiusMult < 2.4) {
-                    // Middle - purple transition
+                    // Middle - deep azure to dark blue
                     const alpha = 0.3 + Math.random() * 0.4;
-                    const purpleBlend = (this.radiusMult - 1.8) / 0.6;
-                    const r = Math.floor(180 - purpleBlend * 60);
-                    const g = Math.floor(120 - purpleBlend * 50);
-                    const b = Math.floor(255 - purpleBlend * 35);
+                    const blueBlend = (this.radiusMult - 1.8) / 0.6;
+                    const r = Math.floor(60 - blueBlend * 30);
+                    const g = Math.floor(170 - blueBlend * 70);
+                    const b = Math.floor(255 - blueBlend * 55);
                     this.color = `rgba(${r}, ${g}, ${b}, ${alpha})`;
                     this.size = 0.4 + this.sizeVariation * 0.8;
                     this.glowIntensity = 0.8;
                 } else {
-                    // Outer - deep purple fading to dark blue
+                    // Outer - deep dark blue
                     const alpha = 0.2 + Math.random() * 0.3;
-                    this.color = `rgba(80, 40, 140, ${alpha})`;
+                    this.color = `rgba(20, 60, 140, ${alpha})`;
                     this.size = 0.3 + this.sizeVariation * 0.5;
                     this.glowIntensity = 0.5;
                 }
@@ -193,10 +193,10 @@ const BlackHole = () => {
             }
 
             drawLensingParticle(x, y, size, alpha, globalTime) {
-                // Purple-tinted lensing with color variation
-                const purpleShift = Math.sin(globalTime * 0.001 + this.angle) * 30;
-                const r = Math.floor(160 + purpleShift);
-                const g = Math.floor(140 + purpleShift * 0.5);
+                // Blue-tinted lensing with color variation (blue void theme)
+                const blueShift = Math.sin(globalTime * 0.001 + this.angle) * 30;
+                const r = Math.floor(80 + blueShift * 0.5);
+                const g = Math.floor(180 + blueShift * 0.3);
                 const b = 255;
                 ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
                 ctx.beginPath();
@@ -213,16 +213,16 @@ const BlackHole = () => {
 
             reset() {
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.min(width, height) * (0.4 + Math.random() * 0.3);
+                const distance = Math.min(width, height) * (0.44 + Math.random() * 0.33); // 10% further
                 this.x = centerX + Math.cos(angle) * distance;
                 this.y = centerY + Math.sin(angle) * distance;
-                this.speed = 0.1 + Math.random() * 0.2; // Slower for sense of scale
-                this.size = Math.random() * 1 + 0.5; // Smaller particles
+                this.speed = 0.09 + Math.random() * 0.18; // 10% slower
+                this.size = Math.random() * 1 + 0.5;
                 this.trail = [];
-                this.maxTrailLength = 20 + Math.floor(Math.random() * 15); // Longer trails
+                this.maxTrailLength = 20 + Math.floor(Math.random() * 15);
                 this.opacity = 0.25 + Math.random() * 0.4;
-                // Add purple tint variation
-                this.isPurple = Math.random() > 0.5;
+                // Blue tint variations (blue void theme)
+                this.isLightBlue = Math.random() > 0.5;
             }
 
             update() {
@@ -254,15 +254,15 @@ const BlackHole = () => {
             }
 
             draw() {
-                // Draw trail with blue-purple gradient
+                // Draw trail with blue gradient (blue void theme)
                 for (let i = 0; i < this.trail.length; i++) {
                     const t = this.trail[i];
                     const alpha = (i / this.trail.length) * this.opacity * 0.5;
                     const size = this.size * (i / this.trail.length);
-                    if (this.isPurple) {
-                        ctx.fillStyle = `rgba(150, 100, 255, ${alpha})`;
+                    if (this.isLightBlue) {
+                        ctx.fillStyle = `rgba(100, 200, 255, ${alpha})`;
                     } else {
-                        ctx.fillStyle = `rgba(100, 170, 255, ${alpha})`;
+                        ctx.fillStyle = `rgba(50, 140, 220, ${alpha})`;
                     }
                     ctx.beginPath();
                     ctx.arc(t.x, t.y, size, 0, Math.PI * 2);
@@ -270,10 +270,10 @@ const BlackHole = () => {
                 }
 
                 // Draw particle
-                if (this.isPurple) {
-                    ctx.fillStyle = `rgba(200, 160, 255, ${this.opacity})`;
+                if (this.isLightBlue) {
+                    ctx.fillStyle = `rgba(150, 220, 255, ${this.opacity})`;
                 } else {
-                    ctx.fillStyle = `rgba(180, 220, 255, ${this.opacity})`;
+                    ctx.fillStyle = `rgba(80, 180, 255, ${this.opacity})`;
                 }
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -284,7 +284,7 @@ const BlackHole = () => {
         const stars = [];
         const diskParticles = [];
         const fallingParticles = [];
-        const FALLING_PARTICLE_COUNT = 30;
+        const FALLING_PARTICLE_COUNT = 33; // 10% more particles
 
         const init = () => {
             width = window.innerWidth;
@@ -304,13 +304,13 @@ const BlackHole = () => {
         };
 
         const drawEventHorizon = (horizonRadius, globalTime) => {
-            // Outer glow - multiple layers for depth with purple tints
+            // Outer glow - multiple layers for depth with blue tints (blue void theme)
             const glowLayers = [
-                { radius: 1.8, alpha: 0.03, color: '80, 50, 140' },      // Deep purple
-                { radius: 1.5, alpha: 0.05, color: '100, 70, 180' },     // Purple
-                { radius: 1.3, alpha: 0.08, color: '120, 100, 200' },    // Purple-blue
-                { radius: 1.15, alpha: 0.12, color: '140, 140, 220' },   // Light purple-blue
-                { radius: 1.08, alpha: 0.2, color: '180, 180, 255' },    // Bright purple-white
+                { radius: 1.8, alpha: 0.03, color: '20, 60, 120' },      // Deep blue
+                { radius: 1.5, alpha: 0.05, color: '30, 100, 180' },     // Dark azure
+                { radius: 1.3, alpha: 0.08, color: '50, 140, 220' },     // Azure
+                { radius: 1.15, alpha: 0.12, color: '80, 180, 240' },    // Light azure
+                { radius: 1.08, alpha: 0.2, color: '150, 220, 255' },    // Bright cyan
             ];
 
             glowLayers.forEach(layer => {
@@ -332,19 +332,35 @@ const BlackHole = () => {
             ctx.fillStyle = colors.eventHorizon;
             ctx.fill();
 
-            // Photon sphere - bright ring with subtle purple tint
-            const purplePulse = Math.sin(globalTime * 0.002) * 20;
+            // Photon sphere - rich deep azure ring (blue void theme)
+            const bluePulse = Math.sin(globalTime * 0.002) * 15;
+
+            // Outer photon ring - deep rich blue
             ctx.beginPath();
-            ctx.arc(centerX, centerY, horizonRadius * 1.02, 0, Math.PI * 2);
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = `rgba(${200 + purplePulse}, ${180 + purplePulse}, 255, 0.9)`;
+            ctx.arc(centerX, centerY, horizonRadius * 1.04, 0, Math.PI * 2);
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = `rgba(${15 + bluePulse}, ${60 + bluePulse}, ${160 + bluePulse * 0.5}, 0.6)`;
             ctx.stroke();
 
-            // Inner photon ring glow with purple
+            // Main photon ring - rich azure
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, horizonRadius * 1.02, 0, Math.PI * 2);
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = `rgba(${30 + bluePulse}, ${100 + bluePulse}, ${200 + bluePulse * 0.5}, 0.85)`;
+            ctx.stroke();
+
+            // Inner photon ring glow - deep saturated blue
             ctx.beginPath();
             ctx.arc(centerX, centerY, horizonRadius * 1.01, 0, Math.PI * 2);
-            ctx.lineWidth = 4;
-            ctx.strokeStyle = 'rgba(220, 200, 255, 0.3)';
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = 'rgba(20, 80, 180, 0.4)';
+            ctx.stroke();
+
+            // Innermost bright edge
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, horizonRadius * 1.005, 0, Math.PI * 2);
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = `rgba(${60 + bluePulse}, ${140 + bluePulse}, 255, 0.7)`;
             ctx.stroke();
         };
 

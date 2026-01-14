@@ -1,13 +1,13 @@
 :root {
   --bg-void: #030308;
   --bg-deep: #0a0a16;
-  --primary-glow: rgba(120, 50, 255, 0.8);
-  --primary-accent: #b06bff;
-  --secondary-accent: #00e0ff;
+  --primary-glow: rgba(30, 144, 255, 0.8);
+  --primary-accent: #1e90ff;
+  --secondary-accent: #00d4ff;
   --text-primary: #ffffff;
-  --text-secondary: #a0a0d0;
-  --glass-bg: rgba(20, 20, 40, 0.4);
-  --glass-border: rgba(200, 200, 255, 0.1);
+  --text-secondary: #a0c0e0;
+  --glass-bg: rgba(15, 25, 45, 0.4);
+  --glass-border: rgba(100, 180, 255, 0.15);
   --danger: #ff4040;
   --success: #00ff80;
 }

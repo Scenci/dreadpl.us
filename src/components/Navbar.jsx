@@ -8,8 +8,8 @@ import './Navbar.css';
 
 const Navbar = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [expansion, setExpansion] = useState('The War Within');
-  const [season, setSeason] = useState('Season 3');
+  const [expansion, setExpansion] = useState('Midnight');
+  const [season, setSeason] = useState('Preseason');
 
   useEffect(() => {
     const fetchSeason = async () => {
