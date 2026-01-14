@@ -12,14 +12,17 @@ const calculateMPS = (keyLevel1, keyLevel2) => {
   return (bestKey + alternateKey).toFixed(2);
 };
 
+// Normalize strings for comparison (case-insensitive, trimmed)
+const normalize = (str) => str?.toLowerCase().trim() || '';
+
 // Find lowest alternate run and highest best run, safely
 const findLowestAlternateHighestBest = (dungeonData, character) => {
   if (!character?.name || !character?.realm) return null;
 
   const characterData = dungeonData.find(
     data =>
-      data.character?.name === character.name &&
-      data.character?.realm === character.realm
+      normalize(data.character?.name) === normalize(character.name) &&
+      normalize(data.character?.realm) === normalize(character.realm)
   );
   if (!characterData) return { lowestAlternate: null, highestBest: null, newScore: null };
 
@@ -42,13 +45,13 @@ const findLowestAlternateHighestBest = (dungeonData, character) => {
   return { lowestAlternate, highestBest, newScore };
 };
 
-// Find highest best run for a specific dungeon (unchanged)
+// Find highest best run for a specific dungeon
 const findHighestKeyForDungeon = (dungeonData, character, dungeon) => {
   if (!character?.name || !character?.realm) return null;
   const characterData = dungeonData.find(
     data =>
-      data.character?.name === character.name &&
-      data.character?.realm === character.realm
+      normalize(data.character?.name) === normalize(character.name) &&
+      normalize(data.character?.realm) === normalize(character.realm)
   );
   if (!characterData) return null;
   return characterData.mythic_plus_best_runs?.find(run => run.short_name === dungeon) || null;

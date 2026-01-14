@@ -7,6 +7,7 @@ const About = () => {
             WoW Mythic+ Team "DreadPlus"
             <br/><br/>
             </p>
+            <div className="about-spacer"></div>
         </div>
     )
 }
