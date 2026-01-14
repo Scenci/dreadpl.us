@@ -1,51 +1,16 @@
 import React, { useState } from 'react';
 import './DungeonBreakdown.css';
 
-const DungeonBreakdown = ({ dungeonData, setKeyLevels }) => {
+const DungeonBreakdown = ({ dungeonData }) => {
 
   const [highlightedDungeon, setHighlightedDungeon] = useState(null);
   const [highlightedColumnType, setHighlightedColumnType] = useState(null);
-
-  const dungeons = [
-    "BH",
-    "FH",
-    "HOI",
-    "NL",
-    "NELT",
-    "UNDR",
-    "VP",
-    "ULD"
-  ];
-
 
   const handleClick = (dungeonName, columnType) => {
     setHighlightedDungeon(dungeonName);
     setHighlightedColumnType(columnType);
   };
 
-
-  const handleLoadData = (data) => {
-    console.log("load data: ", data);
-    const tyrannicalBestRuns = filterDungeonsByType(data.mythic_plus_best_runs, 'Tyrannical');
-    const fortifiedBestRuns = filterDungeonsByType(data.mythic_plus_best_runs, 'Fortified');
-    const tyrannicalAlternateRuns = filterDungeonsByType(data.mythic_plus_alternate_runs, 'Tyrannical');
-    const fortifiedAlternateRuns = filterDungeonsByType(data.mythic_plus_alternate_runs, 'Fortified');
-
-    const tyrannicalRuns = tyrannicalBestRuns.concat(tyrannicalAlternateRuns);
-    const fortifiedRuns = fortifiedBestRuns.concat(fortifiedAlternateRuns);
-
-    const newKeyLevels = dungeons.reduce((acc, dungeon) => {
-      const tyrannicalRun = tyrannicalRuns.find(run => run.short_name === dungeon);
-      const fortifiedRun = fortifiedRuns.find(run => run.short_name === dungeon);
-      acc[dungeon] = [
-        tyrannicalRun ? tyrannicalRun.mythic_level : '',
-        fortifiedRun ? fortifiedRun.mythic_level : ''
-      ];
-      return acc;
-    }, {});
-
-    setKeyLevels(newKeyLevels);
-  };
 
   function filterDungeonsByType(dungeonRuns = [], type) {
     return dungeonRuns
@@ -105,9 +70,6 @@ const DungeonBreakdown = ({ dungeonData, setKeyLevels }) => {
                 </div>
 
 
-              </div>
-              <div className="button-container-load">
-                <button onClick={() => handleLoadData(data)}>Load Calculator</button>
               </div>
             </div>
           );

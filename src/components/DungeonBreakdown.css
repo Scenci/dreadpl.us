@@ -12,9 +12,9 @@
 .dungeon-breakdown-title {
   font-family: 'CinzelDec', serif;
   font-size: 2.5rem;
-  color: var(--primary-accent);
+  color: #1e90ff;
   text-align: center;
-  text-shadow: 0 0 10px rgba(176, 107, 255, 0.5);
+  text-shadow: 0 0 10px rgba(30, 100, 180, 0.6);
   margin-bottom: 2rem;
   display: block;
 }
@@ -146,26 +146,6 @@
   color: var(--text-primary);
 }
 
-/* Color grading for key levels could go here if implemented in JS, 
+/* Color grading for key levels could go here if implemented in JS,
    but simplistic CSS grading is hard without classes.
    We stick to clean white/glow. */
-
-.button-container-load {
-  margin-top: 1rem;
-}
-
-.button-container-load button {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.button-container-load button:hover {
-  background: var(--primary-accent);
-  border-color: var(--primary-accent);
-  box-shadow: 0 0 10px var(--primary-accent);
-}

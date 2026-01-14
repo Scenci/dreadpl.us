@@ -4,7 +4,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1; /* Behind everything */
+  z-index: -1;
   pointer-events: none;
-  background-color: #050505; /* Deep space black */
+  background: radial-gradient(ellipse at center,
+    rgb(5, 8, 15) 0%,
+    rgb(2, 3, 8) 50%,
+    rgb(0, 0, 0) 100%
+  );
 }

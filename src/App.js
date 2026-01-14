@@ -21,6 +21,8 @@ import Analytics from './pages/Analytics';
 
 import Playlists from './pages/Playlists';
 
+import BlackHole from './components/BlackHole';
+
 
 
 function App() {
@@ -28,7 +30,6 @@ function App() {
   const [selectedMember, setSelectedMember] = useState(null);
   const [dungeonData, setDungeonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [keyLevels, setKeyLevels] = useState(Array(16).fill(""));
   const [affixes, setAffixes] = useState([]);
   const [dbdVisible, setDBDVisible] = useState(false);
 
@@ -120,7 +121,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <VoidParticles /> */}
+      <BlackHole />
 
       <div className="page-container">
         <Routes>
@@ -177,7 +178,13 @@ function App() {
                       </div>
                     </div>
                     <main>
-                      <DungeonBreakdown dungeonData={dungeonData} setKeyLevels={setKeyLevels} />
+                      <DungeonBreakdown
+                        dungeonData={dungeonData.slice().sort((a, b) => {
+                          const aScore = a.character.mythic_plus_scores_by_season[0].scores.all;
+                          const bScore = b.character.mythic_plus_scores_by_season[0].scores.all;
+                          return bScore - aScore;
+                        })}
+                      />
 
 
 
